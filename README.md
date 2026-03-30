@@ -1,5 +1,9 @@
 # commit-daily-summary
 
+<p align="center">
+    <a href="https://linux.do" alt="LINUX DO"><img src="https://shorturl.at/ggSqS" /></a>
+</p>
+
 [![License](https://img.shields.io/github/license/leonsong09/commit-daily-summary)](https://github.com/leonsong09/commit-daily-summary/blob/main/LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/leonsong09/commit-daily-summary)](https://github.com/leonsong09/commit-daily-summary/commits/main)
 [![Repo Size](https://img.shields.io/github/repo-size/leonsong09/commit-daily-summary)](https://github.com/leonsong09/commit-daily-summary)
@@ -112,3 +116,5 @@ commit-daily-summary/
 ## License
 
 MIT
+
+
