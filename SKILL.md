@@ -1,9 +1,9 @@
 ---
-name: commit-summary
+name: commit-daily-summary
 description: Use when the user wants a same-day summary of git commits or a commit-based daily report, asks what they did today, or says 总结我今天做了什么, 总结我的提交, 提交总结, 今天提交总结, 日报.
 ---
 
-# commit-summary
+# commit-daily-summary
 
 ## Overview
 
@@ -119,4 +119,6 @@ Before responding, verify:
 - [ ] Related commits are grouped into workstreams
 - [ ] Chinese task lines are human-readable and action-oriented
 - [ ] Empty noise commits are not treated as major work items
+
+
 

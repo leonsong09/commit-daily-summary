@@ -1,109 +1,95 @@
-# commit-summary
+# commit-daily-summary
 
-A skill for turning one day of git commits into a concise, human-readable daily work summary.
+[![License](https://img.shields.io/github/license/leonsong09/commit-daily-summary)](https://github.com/leonsong09/commit-daily-summary/blob/main/LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/leonsong09/commit-daily-summary)](https://github.com/leonsong09/commit-daily-summary/commits/main)
+[![Repo Size](https://img.shields.io/github/repo-size/leonsong09/commit-daily-summary)](https://github.com/leonsong09/commit-daily-summary)
 
-## What this skill does
+> 基于 git 提交生成中文日报，把原始 commit 压缩成按主题聚合、动作导向的可读总结。
 
-`commit-summary` converts raw git commit history into grouped task summaries that are easier to read in standups, daily reports, or work logs.
+## 适用场景
 
-Instead of repeating raw commit lines, it:
-- collects commits within a date range,
-- groups related commits by workstream,
-- rewrites them into short action-oriented summaries,
-- optionally includes raw commit details as an appendix.
-
-## When to use
-
-Use this skill when the user says things like:
-- “summarize my commits”
-- “what did I do today?”
-- “daily commit summary”
-- “总结我今天做了什么”
-- “总结我的提交”
-- “提交总结”
-- “今天提交总结”
-- “日报”
-
-## When not to use
-
-This skill is **not** the best fit when the user wants:
-- a current-session wrap-up,
-- a project-wide daily summary that combines sessions and unstaged changes,
-- a research note or analysis memo,
-- a summary of uncommitted work only.
-
-## Trigger phrases
-
-English:
-- summarize my commits
-- what did I do today
-- daily commit summary
-
-Chinese:
+当用户想要：
 - 总结我今天做了什么
 - 总结我的提交
 - 提交总结
 - 今天提交总结
 - 日报
 
-## Workflow
+## 不适用场景
 
-1. **Determine scope**
-   - Default to today in the user's local timezone.
-   - Decide whether the summary covers one repo or multiple repos.
+以下情况更适合其他 skill：
+- 当前会话收尾：`session-wrap`
+- 同日项目级工作汇总：`project-daily-summary`
+- 调研/分析结论整理：`research-note-wrap`
+- 只看未提交工作区改动而不是提交记录
 
-2. **Collect commits**
-   - Use git history as the primary evidence source.
-   - Be explicit about the time window.
+## 触发词
 
-3. **Group by workstream**
-   - Merge related commits into broader themes.
-   - Avoid one-line-per-commit summaries when commits clearly belong together.
+中文：
+- 总结我今天做了什么
+- 总结我的提交
+- 提交总结
+- 今天提交总结
+- 日报
 
-4. **Rewrite as Chinese action summaries**
-   - Use short action verbs.
-   - Emphasize outcomes rather than raw implementation noise.
+English:
+- summarize my commits
+- what did I do today
+- daily commit summary
 
-5. **Produce the report**
-   - Include date scope, summary bullets, grouped details, and raw commits only if helpful.
+## 工作流
 
-## Installation
+1. 先确定日期范围与仓库范围，默认是**今天 / 当前仓库**。
+2. 用 git log 收集提交作为第一证据源。
+3. 把相关 commits 聚合为 workstream，而不是一条 commit 对一条摘要。
+4. 改写成中文动作化总结句。
+5. 输出日报；必要时再附原始 commits。
 
-Copy the folder into your local skills directory.
+## 安装
 
-Common locations:
-
-- Codex: `~/.codex/skills/commit-summary`
-- Agents-style setups: `~/.agents/skills/commit-summary`
-
-## Repository structure
+将整个目录复制到本地技能目录，例如：
 
 ```text
-commit-summary/
+~/.codex/skills/commit-daily-summary
+```
+
+或：
+
+```text
+~/.agents/skills/commit-daily-summary
+```
+
+## 仓库结构
+
+```text
+commit-daily-summary/
   SKILL.md
   README.md
   LICENSE
   .gitignore
 ```
 
-## Usage example
+## 配置
 
-### Example prompt
+该 skill 默认不写死日报输出路径；若项目要求落盘，可在项目 `AGENTS.md` 中补充保存目录和文件名规范。
+
+## 用法示例
+
+### 示例输入
 
 ```text
 总结我的提交
 ```
 
-### Expected behavior
+### 预期行为
 
-The agent should:
-- determine the date range,
-- read commit history,
-- group related work,
-- rewrite it into readable Chinese task statements,
-- avoid dumping raw commits without interpretation.
+- 明确时间范围
+- 读取 git 提交
+- 聚合同主题 commits
+- 输出中文动作化总结
+- 避免单纯罗列原始 commit 标题
 
-## Output example
+## 输出示例
 
 ```markdown
 ## 提交总结
@@ -112,29 +98,16 @@ The agent should:
 - 范围：today / current repo
 
 ### 今日工作摘要
-- 修复了任务页的终态刷新问题
+- 修复了任务页终态刷新问题
 - 补充了设置保存链路的回归测试
 - 整理了图表配置与调试日志输出
-
-### 分项明细
-#### trading-system
-- 图表链路：修复终态刷新与状态展示
-- 测试保护：新增 focused 回归用例
 ```
 
-## Customization
+## 限制
 
-You can adapt this skill for:
-- multi-repository daily summaries,
-- organization-specific daily report formats,
-- timezone-aware work windows,
-- append-only commit detail sections.
-
-## Limitations
-
-- It depends on commit history being available.
-- It is not a replacement for a session summary when work is still uncommitted.
-- It should not invent work beyond what commit evidence supports.
+- 它以 git 提交为核心证据；如果没有 commit，需要明确说明。
+- 它不适合替代当前会话总结或项目级全局日报。
+- 若提交粒度很差，摘要质量也会受影响。
 
 ## License
 
